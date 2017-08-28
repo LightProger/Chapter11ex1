@@ -10,6 +10,8 @@
    программа сообщает пользователю, был ли он рожден
    в високосный год */
 
+#define CURRENTYEAR 2017
+
 /* прототип функции */
 void Born(void);
 
@@ -21,37 +23,41 @@ int main ()
 
 void Born()
 {
-  int yearBorn, age, currentYear = 2017;
+  int yearBorn = 0, age = 0;
 
-  printf ("В каком году Вы родились?\n");
-  scanf ("%i", &yearBorn);
-  getchar ();
-
-  /*Это выражение if может произвести проверку
+      /*Это выражение if может произвести проверку
    введенных данных, чтобы удостовериться
    в том, что введенный год может
    соответствовать действительности.
    Программа продолжит выполняться только при условии,
    что введенный год наступил раньше текущего года */
 
-  if(yearBorn < 1900)
-    {
-      printf ("Правда? Столько не живут!\n");
-      printf ("Хотите попробовать ввести другой год?\n");
-      printf ("В каком году Вы родились?\n");
-      scanf ("%i", &yearBorn);
-      getchar ();
-    }
+  printf ("В каком году Вы родились?\n");
+  scanf ("%i", &yearBorn);
+  getchar ();
 
-  if(currentYear < yearBorn)
-    {
-      printf ("Правда? Вы еще не родились?\n");
-      printf ("Хотите попробовать ввести другой год?\n");
-      printf ("В каком году Вы родились?\n");
-      scanf ("%i", &yearBorn);
-      getchar ();
-    }
-      age = currentYear - yearBorn;
+      while(yearBorn < 1900 || yearBorn > CURRENTYEAR)
+        {
+          if(yearBorn < 1900)
+            {
+              printf ("Правда? Столько не живут!\n");
+              printf ("Хотите попробовать ввести другой год?\n");
+              printf ("В каком году Вы родились?\n");
+              scanf ("%i", &yearBorn);
+              getchar ();
+            }
+
+          if(CURRENTYEAR < yearBorn)
+            {
+              printf ("Правда? Вы еще не родились?\n");
+              printf ("Хотите попробовать ввести другой год?\n");
+              printf ("В каком году Вы родились?\n");
+              scanf ("%i", &yearBorn);
+              getchar ();
+            }
+        }
+
+      age = CURRENTYEAR - yearBorn;
       printf ("В этом году Вам исполнится %i лет!\n", age);
 
       /*Второе выражение if использует оператор деления по
